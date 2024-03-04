@@ -1,10 +1,7 @@
 package chun.com.tw.customcalendarview_kotlin
 
 import android.content.Context
-import android.graphics.Typeface
-import android.os.Build
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,6 +40,7 @@ class CustomCalendarView : LinearLayout {
     // Event 事件
     private var listener: CustomCalendarListener? = null
 
+    var changemonth = 0
     //單點擊事件
     private val onClickListener = OnClickListener { view ->
         val calendar = getDaysInCalendar(view)
@@ -179,6 +177,15 @@ class CustomCalendarView : LinearLayout {
         this.listener = listener
     }
 
+    //標記圓圈
+    fun markCircleImage1(date: Date) {
+        val calendar = Calendar.getInstance()
+        calendar.time = date
+
+        val circleImage1 = getLoveImage(calendar)
+        circleImage1.visibility = View.VISIBLE
+    }
+
 //    //標記圓圈
 //    fun markCircleImage1(date: Date) {
 //        val calendar = Calendar.getInstance()
@@ -194,11 +201,11 @@ class CustomCalendarView : LinearLayout {
 //        }
 //    }
 
-    //標記圓圈
-    fun markCircleImage2(date: Date) {
-        val calendar = Calendar.getInstance()
-        calendar.time = date
-
+//    //標記圓圈
+//    fun markCircleImage2(date: Date) {
+//        val calendar = Calendar.getInstance()
+//        calendar.time = date
+//
 //        val circleImage2 = getCircleImage2(calendar)
 //        circleImage2.visibility = View.VISIBLE
 //
@@ -207,7 +214,7 @@ class CustomCalendarView : LinearLayout {
 //        } else {
 //            setDrawbleTint(circleImage2, R.color.calendar_circle_2)
 //        }
-    }
+//    }
 
     //清除所選日期
     fun clearSelectedDay() {
@@ -278,6 +285,7 @@ class CustomCalendarView : LinearLayout {
                 throw IllegalStateException(resources.getString(R.string.Error1))
             }
             // 減少月份
+            changemonth -= 1
             currentCalendar.add(Calendar.MONTH, -1)
             lastSelectedDayCalendar = null
             updateView()
@@ -289,6 +297,7 @@ class CustomCalendarView : LinearLayout {
                 throw IllegalStateException(resources.getString(R.string.Error1))
             }
             // 增加月份
+            changemonth += 1
             currentCalendar.add(Calendar.MONTH, 1)
             lastSelectedDayCalendar = null
             updateView()
@@ -543,25 +552,33 @@ class CustomCalendarView : LinearLayout {
         val calendar = Calendar.getInstance()
 
         var changeCalender = Calendar.getInstance() //恢復本月
+        var amount = 0
+
         //上個月
         //下個月
         //本月
         if( (tagId.toInt() < 13) && (Integer.valueOf(dayOfTheMonthText.text.toString()) > 23) ) {
-            Log.i("EE" , "上個月")
-            if(changeCalender != currentCalendar) {
-                changeCalender = currentCalendar
+            if (changemonth == 0) {
+                // 減少月份
+                changeCalender.add(Calendar.MONTH, -1)
+            } else {
+                //判斷減少多少月
+                amount = -1 + changemonth
+                // 減少月份
+                changeCalender.add(Calendar.MONTH, amount)
             }
-            // 減少月份
-            changeCalender.add(Calendar.MONTH, -1)
+
         } else if ( (tagId.toInt() > 13) && (Integer.valueOf(dayOfTheMonthText.text.toString()) < 13) ) {
-            Log.i("EE" , "下個月")
-            if(changeCalender != currentCalendar) {
-                changeCalender = currentCalendar
+            if (changemonth == 0) {
+                // 增加月份
+                changeCalender.add(Calendar.MONTH, 1)
+            } else {
+                //判斷增加多少月
+                amount = 1 + changemonth
+                // 增加月份
+                changeCalender.add(Calendar.MONTH, amount)
             }
-            // 增加月份
-            changeCalender.add(Calendar.MONTH, 1)
         } else {
-            Log.i("EE" , "本月")
             changeCalender = currentCalendar
         }
         calendar.set(Calendar.YEAR, changeCalender.get(Calendar.YEAR))

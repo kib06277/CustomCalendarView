@@ -37,23 +37,27 @@ class MainActivity : AppCompatActivity() {
 
         btn_mark.setOnClickListener { view ->
             val calendar = Calendar.getInstance()
-            val random = Random(System.currentTimeMillis())
-            val style = random.nextInt(2)
-            val daySelected = random.nextInt(calendar.getActualMaximum(Calendar.DAY_OF_MONTH))
-            calendar.set(Calendar.DAY_OF_MONTH, daySelected)
 
-            when (style) {
+            for (i in 0 until 7) {
+                calendarPicker.markCircleImage1(calendar.time)
+                calendar.add(Calendar.DAY_OF_MONTH, 1)
+            }
+//            val random = Random(System.currentTimeMillis())
+//            val style = random.nextInt(2)
+//            val daySelected = random.nextInt(calendar.getActualMaximum(Calendar.DAY_OF_MONTH))
+//            calendar.set(Calendar.DAY_OF_MONTH, daySelected)
+//
+//            when (style) {
 //                0 -> calendarPicker.markCircleImage1(calendar.time)
 //                1 -> calendarPicker.markCircleImage2(calendar.time)
-                else -> {
-                }
-            }
+//                else -> {
+//                }
+//            }
         }
 
         btn_clean.setOnClickListener { v -> calendarPicker.clearSelectedDay() }
 
         val sdf = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
-
         calendarPicker.setCustomCalendarListener(object : CustomCalendarView.CustomCalendarListener {
             override fun onDayClick(date: Date) {
                 val formattedDate = sdf.format(date)
