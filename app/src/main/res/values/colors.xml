@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="calendar_background">#FFFFFF</color>
+    <color name="calendar_month_font">#2A99BC</color>
+    <color name="calendar_day_of_the_week_font">#161d20</color>
+    <color name="calendar_selected_day_font">#FFFFFF</color>
+    <color name="calendar_selected_day_background">#20BEB2</color>
+    <color name="calendar_current_day_ring">#CCCCCC</color>
+    <color name="calendar_day_of_the_month_font">#4F4F4F</color>
+    <color name="calendar_circle_1">#EB5757</color>
+    <color name="calendar_circle_2">#55c6da</color>
+    <color name="calendar_month_arrow">#55c6da</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="FF782225">#FF782225</color>
+    <color name="FFe5d6c4">#FFe5d6c4</color>
+    <color name="FFb1b1b2">#FFb1b1b2</color>
+    <color name="FFebebeb">#FFebebeb</color>
+    <color name="FFd8d9d9">#FFd8d9d9</color>
+    <color name="FF16461b">#FF16461b</color>
+    <color name="FFFFFFFF">#FFFFFFFF</color>
+    <color name="FF162c1b">#FF162c1b</color>
+    <color name="FFe2e7e6">#FFe2e7e6</color>
+    <color name="FFFF0000">#FFFF0000</color>
+    <color name="FF00FF00">#FF00FF00</color>
+    <color name="FF0000FF">#FF0000FF</color>
+    <color name="transparent">#77000000</color>
+</resources>

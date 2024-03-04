@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">CustomCalendarView_kotlin</string>
+    <string name="Error">您必須先分配一個有效的 CustomCalendarListener！</string>
+    <string name="Error1">您必須先分配一個有效的 RobotoCalendarListener！</string>
+
+</resources>
